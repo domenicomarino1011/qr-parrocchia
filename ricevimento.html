@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5ef">
+  <meta name="description" content="Indicazioni per il ricevimento di Enza e Giulio al Ristorante Blue Marlin Club.">
+  <title>Ricevimento · Enza e Giulio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="card">
+    <div class="mark" aria-hidden="true">✦</div>
+    <p class="eyebrow">IL RICEVIMENTO · BOSCOTRECASE</p>
+    <h1>Ristorante Blue Marlin Club</h1>
+    <p class="address">Via Ugo Foscolo 56<br>80042 Boscotrecase (NA), Italia</p>
+    <section class="choices" aria-labelledby="choose-title">
+      <h2 id="choose-title">Scegli come aprire la mappa</h2>
+      <a class="button primary" id="google-link" href="#">Apri con Google Maps</a>
+      <a class="button secondary" id="apple-link" href="#">Apri con Apple Mappe</a>
+      <button class="button secondary" id="other-button" type="button">Altre app / Condividi</button>
+      <p class="note">Condividi il collegamento della mappa con un'app compatibile disponibile sul dispositivo.</p>
+      <button class="copy-link" id="copy-button" type="button">Copia indirizzo</button>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </section>
+    <p class="fineprint">Enza e Giulio · Grazie di festeggiare con noi.</p>
+  </main>
+  <script>
+    const NAME = "Ristorante Blue Marlin Club";
+    const ADDRESS = "Via Ugo Foscolo 56, 80042 Boscotrecase (NA), Italia";
+    const COORDINATES = "40.7737898,14.4531858";
+    const googleUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(COORDINATES);
+    const appleUrl = "https://maps.apple.com/?ll=" + encodeURIComponent(COORDINATES) + "&q=" + encodeURIComponent(NAME);
+    document.querySelector('#google-link').href = googleUrl;
+    document.querySelector('#apple-link').href = appleUrl;
+    const status = document.querySelector('#status');
+    document.querySelector('#other-button').addEventListener('click', async () => {
+      if (navigator.share) {
+        try { await navigator.share({ title: NAME, text: ADDRESS, url: googleUrl }); }
+        catch (error) { if (error.name !== 'AbortError') status.textContent = 'Condivisione non disponibile. Puoi copiare l’indirizzo.'; }
+      } else {
+        try { await navigator.clipboard.writeText(ADDRESS + "\n" + COORDINATES); status.textContent = 'Indirizzo e coordinate copiati: incollali nell’app che preferisci.'; }
+        catch { status.textContent = 'La condivisione non è disponibile. Usa un pulsante mappa o copia l’indirizzo manualmente.'; }
+      }
+    });
+    document.querySelector('#copy-button').addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(ADDRESS); status.textContent = 'Indirizzo copiato.'; }
+      catch { status.textContent = ADDRESS; }
+    });
+  </script>
+</body>
+</html>

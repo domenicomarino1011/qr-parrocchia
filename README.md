@@ -28,5 +28,12 @@ Lo script rifiuta valori segnaposto, URL non HTTPS e indirizzi `localhost`/local
 ## Comportamento
 
 - Google Maps e Apple Mappe sono scelte esplicite, tramite URL HTTPS.
-- **Altre app / Condividi** richiama il pannello di condivisione del sistema, se disponibile, senza avviare un'app a forza. Se la condivisione non è supportata, prova a copiare indirizzo e coordinate.
+- **Altre app / Condividi** richiama il pannello di condivisione del sistema, se disponibile, senza avviare un'app a forza. Se la condivisione non è supportata, prova a copiare l’indirizzo.
 - La pagina resta statica e non richiede framework, server o permessi particolari.
+
+
+## Indirizzo pubblicato
+
+https://domenicomarino1011.github.io/qr-parrocchia/
+
+La pagina è pubblicata da `main` nella cartella radice. Le modifiche future a questi file verranno distribuite tramite GitHub Pages. Il QR definitivo deve puntare all’indirizzo HTTPS qui sopra.
